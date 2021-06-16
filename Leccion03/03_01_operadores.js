@@ -196,9 +196,12 @@ if(isNaN(edad2)){
  let yy =10;
  let zz = ++xx+yy--; // La literal xx se convierte en 6 y la yy permanece como 10 ya que el decremento se hizo despues de utilizar su valor.
 console.log(zz)
-
-
-
+// Orden de operaciones, Multiplicacion, division y suma
+let resultadoPrecedencia = 4 + 2 * 3 / 2; // ( 4 + ((2*3)/2))
+console.log(resultadoPrecedencia);
+resultadoPrecedencia = (4+5) * 6 / 3
+// el resultado de la operacion seria 18 ya que va primero la operacion dentro de parentesis, luego multiplicacion y despues la division.
+console.log(resultadoPrecedencia);
 
 
 
