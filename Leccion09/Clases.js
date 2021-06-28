@@ -32,6 +32,13 @@
             //se aplica polimorfismo en esta llamada
             return this.nombreCompleto();
         }
+        //USO DE STATIC
+        static saludar(){
+            console.log("Hola, soy un metodo estatico");
+        }
+        static saludar2(persona){
+            console.log(persona.nombre);
+        }
     }
 
     let persona1 = new Persona('Ricardo','Anaya');
@@ -116,3 +123,76 @@
     //Como podemos ver, al sobre escribir el metodo de tostring de la clase Persona aun asi nos imprime junto con el dpto, por lo que podemos deducir que esta tomandolo
     //de la clase hija, a esto se le conoce como polimorfismo. Si estuvieramos trabajando con una referencia a la clase padre, el toString funcionaria sin agregar el dpto
     //al momento de imprimir.
+
+//PALABRA STATIC
+    // tambien podemos agregar metodos que se asocien con nuetra clase exclusivamente.
+
+    //persona1.saludar(); //Aunque este definida desde la clase esta no puede ser usada desde los objetos creados de la misma.
+    Persona.saludar();
+    Persona.saludar2(persona1);
+//Las clases hijas tambien heredan estos metodos estaticos y pueden ser usados de manera normal.
+    Empleado.saludar();
+    Empleado.saludar2(empleadoUno);
+
+//Atributos estaticos
+        //Son metodos que se asocian a nuestra clase y estos se heredan a las calses hijas.
+
+    //Para definir atributos estaticos a nuestras clases se hace lo siguiente
+    class Humano{
+        static contadorObjetosHumano = 0;// Atributo de nuestra clase gracias al static
+        email = 'valor default email'; // Atributo de nuestros objetos
+        static get MAX_OBJ(){
+            return 5;
+        }
+        constructor(nombre,apellido){
+            this._nombre=nombre;
+            this._apellido=apellido;
+            if(Humano.contadorObjetosHumano < Humano.MAX_OBJ){
+                //Por cada objeto tendra un id
+                this.idHumano = Humano.contadorObjetosHumano++;
+            }else{
+                console.log('se han superado la cantidad maxima de objetos asignados para creacion')
+            }
+           
+        }
+        nombreCompleto(){
+            return this._nombre +" "+this._apellido;
+        }
+    }
+
+    class Hombre extends Humano{
+        constructor(nombre,apellido,sexo){
+            super(nombre,apellido);
+            this._sexo=sexo;
+        }
+        imprimirInfo(){
+            return "Soy el humano conocido como: "+ super.nombreCompleto() +" y soy del sexo: "+this._sexo +" y con el id de: "+this.idHumano;
+        }
+    }
+    let humano1 = new Humano('Carlos','Torres',"Masculino");
+    let humano2 = new Humano('Ramona','Ayala',"Femenino");
+    let hombre = new Hombre('javier','fernandez','Masculino');
+    //No se nos permitira acceder a el por medio de un objeto creado por la clase
+    //console.log(humano1.contadorObjetosHumano);
+    //Debe de accederse desde la clase directamente
+    console.log(Humano.contadorObjetosHumano);
+    console.log(Hombre.contadorObjetosHumano);
+    console.log(humano1.email);
+
+
+    console.log(humano1);
+    console.log(humano2);
+    console.log(hombre.imprimirInfo());
+    console.log(hombre.imprimirInfo());
+
+//Creacion de constantes estaticas
+    //No podemos usar const, para ello necesitamos un metodo estatico: linea 144
+    console.log(Humano.MAX_OBJ);
+    //Si queremos setearle un numero diferente este no cambiara, ya que solo aplicamos el metodo get y no el set
+    Humano.MAX_OBJ=100;
+    console.log(Humano.MAX_OBJ);
+    let hombre2 = new Hombre('javier','fernandez','Masculino');
+    let hombre3 = new Hombre('javier','fernandez','Masculino');
+    let hombre4 = new Hombre('javier','fernandez','Masculino');
+    console.log(Hombre.contadorObjetosHumano);
+    
