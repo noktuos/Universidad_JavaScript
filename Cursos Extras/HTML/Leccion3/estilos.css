@@ -1,0 +1,25 @@
+table{
+    width:100%;
+}
+table,th,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 5px;
+    padding:5px
+}
+caption{
+    color:red;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+    line-height: 70px;
+}
+th{
+    color:#fafaee;
+    background:grey;
+}
+tr:nth-child(even){
+    background-color: bisque;
+}
+tr:nth-child(odd){
+   background-color:aliceblue; 
+}

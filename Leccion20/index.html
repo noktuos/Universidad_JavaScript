@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de Eventos DOM HTML y JS</title>
+</head>
+<body onload="entrar()">
+    <h1 id="titulo" onmouseover="rojo(this)" onmouseleave="azul(this)">Manejo de DOM con JS</h1>
+    <h2 onmousedown="morado(this)" onmouseup="verde(this)">Segundo titulo</h2>
+    
+    <br>
+    <div id="mostrar"></div>
+    Nombre: <input type="text" onchange="convertir(this)">
+    Apellido: <input type="text" onblur="fondoBlur(this)" onfocus="cambiarFondo(this)">
+    Telefono: <input type="text" id="telefono">
+    Direccion: <input type="text" id="direccion">
+    
+
+    <form action="" id="forma">
+        <legend>Formulario delegacion de eventos</legend>
+        
+        Nombre: <input type="text" id="nombre">
+        Apellido: <input type="text" id="apellido">
+    </form>
+    <script>
+
+        function cambiarTit(titulo){
+            titulo.innerHTML = 'titulaxo cambiado';
+            
+        }
+
+        document.getElementById('titulo').onclick = cambiarTexto;
+
+        function cambiarTexto(){
+            document.getElementById('mostrar').innerHTML = 'Nuevo contenido';
+        }
+
+        function entrar(){
+            alert('Entrando a la pagina web');
+            let texto = '';
+            if(navigator.cookieEnabled){
+                texto='Las cookies estan habilitadas';
+            }else{
+                texto = 'Las cookies estan deshabilitadas';
+            }
+            document.getElementById('mostrar').innerHTML = texto;
+        }
+
+        function convertir(nombreInput){
+            nombreInput.value = nombreInput.value.toUpperCase();
+        }
+
+        function rojo(titulo){
+            titulo.style.color= 'red';
+        }
+
+        function azul(titulo){
+            titulo.style.color='blue';
+        }
+
+        function morado(h2){
+            h2.style.color='purple';
+        }
+        function verde(h2){
+            h2.style.color='green';
+        }
+
+        function cambiarFondo(elementoInput){
+                elementoInput.style.background ='red';
+        }
+        function fondoBlur(elementoInput){
+            elementoInput.style.background = 'white';
+        }
+        //Al agregar el addEventListener ya no se agrega on antes del nobmre de los eventos
+        
+
+        document.getElementById('direccion').addEventListener('focus',(evento) => {
+            evento.target.style.background = 'pink';
+        });
+        document.getElementById('telefono').addEventListener('blur',(evento) => {
+            evento.target.style.background ='green';
+        });
+        function cambiar(evento){
+            let componente = evento.target;
+            componente.style.background = 'yellow';
+        }
+        function regresar(evento){
+            evento.target.style.background='white';
+        }
+
+        //Funciones flecha en addEventListener
+            //usandolas no podemos reutilizar el codigo
+
+        document.getElementById('telefono').addEventListener('focus',cambiar);
+        document.getElementById('telefono').addEventListener('blur',regresar);
+
+        //Delegacion de eventos en js
+            //nos permite propagar los eventos a los tags internos
+        const forma = document.getElementById('forma');
+        forma.addEventListener('focus', (evento)=>{
+            evento.target.style.background ='pink';
+        },true);
+        forma.addEventListener('blur',(evento)=>{
+            evento.target.style.background = 'white';
+        },true);
+
+    </script>
+</body>
+</html>

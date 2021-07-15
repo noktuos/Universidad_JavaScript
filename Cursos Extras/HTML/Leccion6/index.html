@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios en HTML</title>
+</head>
+<body>
+    <h1>Formularios en HTML</h1>
+    <form action="mi_servidor" method='POST'>
+        <fieldset>
+            <legend>Datos personales:</legend>
+
+            <label for="idPersona">Id:</label><br>
+            <input type="text" id='idPersona' name='idPersona' readonly="true" disabled="true"/><br>
+    
+            <input type="hidden" id="sistema" name="sistema" value="SAP">
+
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id='nombre' name='nombre' placeholder="Escribe tu nombre" required='true' /><br>
+    
+            <label for="apellido">Apellido:</label><br>
+            <input type="text" id='apellido' name='apellido' placeholder="Escribe tu apellido" required='true' /><br>
+    
+            <label for="password">Password:</label><br>
+            <input type="password" id='password' name='password' placeholder="*****" required='true' /><br>
+    
+            <label for="email">Email:</label><br>
+            <input type="email" id='email' name='email' placeholder="example@example.com" required='true' /><br>
+    
+            <label for="telefono">Telefono:</label><br>
+            <input type="tel" id='phone' name='phone' pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"  required='true' /><br>
+    
+            <label for="">Genero</label><br>
+            <input type="radio" id='femenino' name='sexo' value='femenino'>
+            <label for="femenino">Femenino</label><br>
+            <input type="radio" id='masculino' name='sexo' value='masculino'>
+            <label for="masculino">Masculino</label><br>
+    
+            <label for="">Genero de musica preferido</label><br>
+            <input type="checkbox" id="clasica" name='musica' value='clasica'>
+            <label for="clasica">Clasica</label><br>
+            <input type="checkbox" id="jazz" name='musica' value='Jazz'>
+            <label for="jazz">Jazz</label><br>
+    
+            <label for="comentario">Comentario</label><br>
+            <textarea name="comentario" id="comentario" cols="30" rows="2"
+            >Este es mi comentario
+    
+            </textarea><br>
+    
+            <label for="autos">Marca de auto:</label><br><br>
+            <select name="autos" id="autos">
+                <option value="nissan">Nissan</option>
+                <option value="volvo">Volvo</option>
+                <option value="tesla">Tesla</option>
+            </select><br>
+            <br>
+    
+            <input type='submit' value='enviar'>
+            <input type="submit" formnovalidate="formnovalidate" value="Enviar sin validar">
+            <input type="reset" value="reestablecer">
+        </fieldset>
+    </form>
+</body>
+</html>

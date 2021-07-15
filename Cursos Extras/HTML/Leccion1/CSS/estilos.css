@@ -2,6 +2,11 @@ h1{
     color:blue;
 }
 p{
-    color:pink;
-    /*background-color: crimson;*/
+    color:white;
+    background-color: crimson;
+    padding:10px;
+    border:10px solid powderblue;
+    margin:auto 50px;
+    text-align:center;
+    
 }
